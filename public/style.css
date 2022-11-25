@@ -33,3 +33,11 @@ h1 {
 a {
   text-decoration: none;
 }
+
+
+#interactive-vis {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
