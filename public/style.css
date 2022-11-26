@@ -7,6 +7,12 @@
 body {
   padding: 64px 32px;
   font: 18px/1.5 "Avenir", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+  max-width: 90ex;
+  margin: 0 auto;
+}
+
+div {
+  margin-top: 16px;
 }
 
 header,
@@ -30,14 +36,34 @@ h1 {
   color: #492a7c;
 }
 
+h2 {
+  margin-bottom: 16px;
+  color: #492a7c;
+}
+
+ul {
+  padding-left: 20px;
+}
+
 a {
   text-decoration: none;
 }
 
+svg {
+  border: 2px solid #ccc; /* TODO: comment this out */
+}
 
-#interactive-vis {
+#interactive-vis{
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 8px;
+  margin-top: 8px;
 }
 
