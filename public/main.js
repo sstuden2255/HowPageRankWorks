@@ -1,6 +1,10 @@
 
-const colors = ["#990000", "#009900", "#000099"]
+//const colors = ["#990000", "#009900", "#000099"]
+//const colors = ['red', 'orange', 'green', 'blue', 'violet']
+const colors = ['#BB0000', '#DD7711', '#00BB00', '#009999', '#2288FF', '#990099']
 var color_index = 0
+
+const jump_chance = 0.05
 
 var dragged_node = null;
 
@@ -28,37 +32,56 @@ function createNode(x,y) {
     let circle = createSVGElement("circle");
     circle.setAttribute("cx", x);
     circle.setAttribute("cy", y);
-    circle.setAttribute("r", 50);
     circle.setAttribute("fill", colors[color_index]);
     color_index = (color_index+1) % colors.length;
     
     circle.setAttribute("class", "node");
     circle.inlinks = []
     circle.outlinks = []
+    circle.percentValue = 0.5;
+    //updateNode(circle)
 
-    circle.addEventListener('mousedown', (event) => {
-        dragged_node = event.target;
+    onMouseDown = (event) => {
+        dragged_node = circle;
         event.stopPropagation()
-    });
+    }
+    circle.addEventListener('mousedown', onMouseDown);
     
-    circle.addEventListener('mouseup', (event) => {
-        if (dragged_node == event.target) {
-            for (let link of event.target.inlinks) {
+    onMouseUp = (event) => {
+        if (dragged_node == circle) {
+            for (let link of circle.inlinks) {
                 link.remove()
             }
-            for (let link of event.target.outlinks) {
+            for (let link of circle.outlinks) {
                 link.remove()
             }
-            event.target.remove()
+            circle.remove()
+            circle.textElement.remove()
         } else {
-            createLink(dragged_node, event.target);
+            createLink(dragged_node, circle);
         }
+        calcGraphValues()
         event.stopPropagation()
-    });
-
-    console.log(circle);
+    }
+    circle.addEventListener('mouseup', onMouseUp)
     
+    text = createSVGElement('text')
+    text.innerHTML = 'skdjfls'
+    text.setAttribute("class", "node-label");
+    text.setAttribute("x", x);
+    text.setAttribute("y", y);
+    text.setAttribute("dominant-baseline", "middle");
+    text.setAttribute("text-anchor", "middle");
+
+    text.addEventListener('mouseup', onMouseUp)
+    text.addEventListener('mousedown', onMouseDown);
+    
+    circle.textElement = text
+
     main_svg.appendChild(circle)
+    main_svg.appendChild(text)
+
+    calcGraphValues()
 }
 
 function createLink(node1, node2) {
@@ -69,17 +92,14 @@ function createLink(node1, node2) {
     }
     
     let link = createSVGElement('line');
-    link.setAttribute("x1", node1.cx.baseVal.value);
-    link.setAttribute("y1", node1.cy.baseVal.value);
-    link.setAttribute("x2", node2.cx.baseVal.value);
-    link.setAttribute("y2", node2.cy.baseVal.value);
     link.setAttribute("stroke", "black");
-    link.setAttribute("stroke-width", "5px");
+    link.setAttribute("stroke-width", "4px");
     link.setAttribute("marker-end", "url(#arrow)");
 
     link.setAttribute("class", "node");
     link.sourceNode = node1
     link.destNode = node2
+
     node1.outlinks.push(link)
     node2.inlinks.push(link)
 
@@ -89,12 +109,79 @@ function createLink(node1, node2) {
             node1.outlinks.splice(node1.outlinks.indexOf(link), 1);
             node1.inlinks.splice(node1.inlinks.indexOf(link), 1);
             link.remove()
+            calcGraphValues()
         }
     });
 
-    console.log(link)
-    
-    main_svg.appendChild(link)
+    main_svg.insertBefore(link, main_svg.firstChild)
+    calcGraphValues()
 }
 
+function updateNode(circle) {
+    //const allNodes = Array.from(document.querySelectorAll('#interactive-vis svg circle'))
+    //let max = Math.max(...(allNodes.map((node) => node.percentValue)))
+    //console.log(max, allNodes, allNodes.map((node) => node.percentValue))
+    circle.setAttribute("r", Math.max(10, circle.percentValue * 40 + 20));
+    circle.textElement.innerHTML = Math.round(circle.percentValue * 100) + "%";
+}
+
+function updateLink(link) {
+    let x1 = link.sourceNode.cx.baseVal.value
+    let y1 = link.sourceNode.cy.baseVal.value
+    let x2 = link.destNode.cx.baseVal.value
+    let y2 = link.destNode.cy.baseVal.value
+    let radius = link.destNode.r.baseVal.value
+    let length = Math.pow((x1-x2) * (x1-x2) + (y1-y2) * (y1-y2), 0.5)
+    x2 += (x1-x2) / length * radius
+    y2 += (y1-y2) / length * radius
+
+    link.setAttribute("x1", x1)
+    link.setAttribute("y1", y1)
+    link.setAttribute("x2", x2)
+    link.setAttribute("y2", y2)
+}
+
+const damping_factor = 0.85
+function calcGraphValues() {
+    nodes = document.querySelectorAll('#interactive-vis svg circle')
+
+    for (let node of nodes) {
+        node.percentValue = 1 / nodes.length;
+        node.nextValue = 0;
+    }
+    
+    for (let iters = 0; iters < 100; iters ++) {
+        let redistribute = 0;
+        for (let node of nodes) {
+            //let value = 0
+            //for (let link of node.inlinks) {
+            //    value += link.sourceNode.percentValue / link.sourceNode.outlinks.length
+            //}
+            //node.nextValue = value * damping_factor + (1 - damping_factor) / nodes.length
+            
+            let value = node.percentValue
+            for (let link of node.outlinks) {
+                let givenValue = (node.percentValue * (1-jump_chance)) / node.outlinks.length
+                link.destNode.nextValue += givenValue
+                value -= givenValue
+            }
+            redistribute += value
+        }
+        
+        for (let node of nodes) {
+            node.percentValue = node.nextValue + redistribute / nodes.length
+            node.nextValue = 0;
+        }
+    }
+
+    tmp = []
+    for (let node of nodes) {
+        tmp.push(node.percentValue);
+        updateNode(node);
+        for (let link of node.outlinks) {
+            updateLink(link);
+        }
+    }
+    //console.log(tmp)
+}
 

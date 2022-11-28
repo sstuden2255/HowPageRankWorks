@@ -67,3 +67,7 @@ svg {
   margin-top: 8px;
 }
 
+#interactive-vis .node-label {
+  user-select: none;
+}
+
