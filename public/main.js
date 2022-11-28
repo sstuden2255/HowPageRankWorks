@@ -4,7 +4,7 @@
 const colors = ['#BB0000', '#DD7711', '#00BB00', '#009999', '#2288FF', '#990099']
 var color_index = 0
 
-const jump_chance = 0.05
+const jump_chance = 0.15
 
 var dragged_node = null;
 
@@ -49,14 +49,7 @@ function createNode(x,y) {
     
     onMouseUp = (event) => {
         if (dragged_node == circle) {
-            for (let link of circle.inlinks) {
-                link.remove()
-            }
-            for (let link of circle.outlinks) {
-                link.remove()
-            }
-            circle.remove()
-            circle.textElement.remove()
+            removeNode(circle)
         } else {
             createLink(dragged_node, circle);
         }
@@ -106,9 +99,7 @@ function createLink(node1, node2) {
     link.addEventListener('mousedown', set_dragged);
     link.addEventListener('mouseup', (event) => {
         if (dragged_node == link) {
-            node1.outlinks.splice(node1.outlinks.indexOf(link), 1);
-            node1.inlinks.splice(node1.inlinks.indexOf(link), 1);
-            link.remove()
+            removeLink(link)
             calcGraphValues()
         }
     });
@@ -140,6 +131,24 @@ function updateLink(link) {
     link.setAttribute("x2", x2)
     link.setAttribute("y2", y2)
 }
+
+function removeNode(node) {
+    for (let link of Array.from(node.outlinks)) {
+        removeLink(link);
+    }
+    for (let link of Array.from(node.inlinks)) {
+        removeLink(link);
+    }
+    node.textElement.remove()
+    node.remove()
+}
+
+function removeLink(link) {
+    link.sourceNode.outlinks.splice(link.sourceNode.outlinks.indexOf(link), 1);
+    link.destNode.inlinks.splice(link.destNode.inlinks.indexOf(link), 1);
+    link.remove()
+}
+
 
 const damping_factor = 0.85
 function calcGraphValues() {
