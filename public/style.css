@@ -53,7 +53,7 @@ svg {
   border: 2px solid #ccc; /* TODO: comment this out */
 }
 
-#interactive-vis{
+#interactive-vis {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -69,5 +69,13 @@ svg {
 
 #interactive-vis .node-label {
   user-select: none;
+}
+
+#interactive-vis svg {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
 }
 

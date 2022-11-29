@@ -139,13 +139,18 @@ function removeNode(node) {
     for (let link of Array.from(node.inlinks)) {
         removeLink(link);
     }
+    node.inlinks = null
+    node.outlinks = null
     node.textElement.remove()
+    node.textElement = null;
     node.remove()
 }
 
 function removeLink(link) {
     link.sourceNode.outlinks.splice(link.sourceNode.outlinks.indexOf(link), 1);
     link.destNode.inlinks.splice(link.destNode.inlinks.indexOf(link), 1);
+    link.sourceNode = null
+    link.destNode = null
     link.remove()
 }
 
