@@ -42,8 +42,17 @@
         <h3>Inputs and outputs</h3>
         <p>
           The algorithm takes in web pages, and outputs a rating for each page, which represents
-          the reliability or trustworthiness of a site.
+          the reliability or trustworthiness of a site. Below, each colored node represents a unique webpage and directed edges between nodes represent links between those pages. The percentage on each node represents the perceived importance of that webpage, calculated through the pagerank algorithm.
         </p>
+        <div class='column'>
+          <svg width="340" height="320" draggable="false"><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="186.265625" y1="241.21875" x2="122.38015872111475" y2="110.29297960129689"></line><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="105.265625" y1="75.21875" x2="250.89488235955852" y2="76.81032658316457"></line><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="288.265625" y1="77.21875" x2="144.29032160181183" y2="75.64524941641325"></line><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="109.265625" y1="275.21875" x2="106.04600948131085" y2="114.23797406554229"></line><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="32.265625" y1="238.21875" x2="89.313938582325" y2="110.83689912439763"></line>
+            <defs>
+              <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 0 L 10 5 L 0 10 z"></path>
+              </marker>
+            </defs>
+          <circle cx="105.265625" cy="75.21875" fill="#DD7711" class="node" r="39.0270260624187"></circle><text class="node-label" x="105.265625" y="75.21875" dominant-baseline="middle" text-anchor="middle">48%</text><circle cx="288.265625" cy="77.21875" fill="#00BB00" class="node" r="37.37297393758132"></circle><text class="node-label" x="288.265625" y="77.21875" dominant-baseline="middle" text-anchor="middle">43%</text><circle cx="32.265625" cy="238.21875" fill="#990099" class="node" r="21.200000000000003"></circle><text class="node-label" x="32.265625" y="238.21875" dominant-baseline="middle" text-anchor="middle">3%</text><circle cx="109.265625" cy="275.21875" fill="#BB0000" class="node" r="21.200000000000003"></circle><text class="node-label" x="109.265625" y="275.21875" dominant-baseline="middle" text-anchor="middle">3%</text><circle cx="186.265625" cy="241.21875" fill="#2288FF" class="node" r="21.200000000000003"></circle><text class="node-label" x="186.265625" y="241.21875" dominant-baseline="middle" text-anchor="middle">3%</text></svg>
+        </div>
         <h3>How the algorithm represent webpages as nodes and connections</h3>
           <p>
             The algorithm works by representing the internet as a directed graph, where web pages
@@ -99,8 +108,7 @@
               </svg>
             </div>
           </div>
-        <h3>Implementation - simplified example</h3>
-      <img src="pagerank.png" alt="Simple PageRank Visualization" class="center">
+        
       <p><i>PageRank Visualiation Description</i></p>
 
     </div>
