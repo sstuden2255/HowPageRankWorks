@@ -79,3 +79,35 @@ svg {
   user-drag: none;
 }
 
+#graph-demo {
+  display: flex;
+  align-items: center;
+}
+
+#graph-demo .column {
+  display: flex;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+#graph-demo .page {
+  width: 120px;
+  height: 150px;
+  border: 2px solid black;
+  margin: 5px;
+  padding: 5px;
+}
+
+#graph-demo .page p {
+  width: 90%;
+  border-bottom: 1px solid black;
+  line-height: 0.1em;
+  margin: 15px 5% 15px 5%;
+  font-size: 12pt;
+}
+
+#graph-demo .page p a {
+  background: white;
+}
+
+
