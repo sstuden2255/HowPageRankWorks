@@ -82,6 +82,7 @@ svg {
 #graph-demo {
   display: flex;
   align-items: center;
+  margin-top: 0px;
 }
 
 #graph-demo .column {
