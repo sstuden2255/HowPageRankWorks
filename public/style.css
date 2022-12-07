@@ -87,6 +87,12 @@ svg {
   display: flex;
 }
 
+#static-graphs .column {
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: center;
+}
+
 #graph-demo {
   display: flex;
   align-items: center;
