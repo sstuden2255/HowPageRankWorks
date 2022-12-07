@@ -83,6 +83,10 @@ svg {
   user-drag: none;
 }
 
+#static-graphs {
+  display: flex;
+}
+
 #graph-demo {
   display: flex;
   align-items: center;
