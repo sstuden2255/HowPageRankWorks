@@ -69,10 +69,10 @@
             <p><i>Example 2</i></p>
           </div>
         </div>
-        <h3>How the algorithm represent webpages as nodes and connections</h3>
+        <h3>The graph network representation</h3>
           <p>
             The algorithm works by representing the internet as a directed graph, where web pages
-            are nodes in the graph and links between pages are the edges between nodes. For example,
+            are nodes and links between pages are the connections between nodes. For example,
             the example below has three web pages, each with links between each other. The corresponding
             graph is shown beside.
           </p>
@@ -124,6 +124,13 @@
               </svg>
             </div>
           </div>
+        <h3>Creating the rating</h3>
+          With the graph created, the algorithm then uses it to rank the pages based on importance.
+          It does this by simulating people traveling around on the graph, clicking links from page to page.
+          The pages where more people end up are thought to be the more important pages, and
+          are ranked higher. The graphs below have been labeled with the percentage of traffic that they would get,
+          which is also their ranking.
+        </h3>
     </div>
 
     <div>
