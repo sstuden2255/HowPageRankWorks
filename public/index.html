@@ -29,12 +29,14 @@
   <main>
     <div>
       <h2>Background and History</h2>
-      <ul>
-        <li>What is the PageRank algorithm?</li>
-        <li>When and why was PageRank invented?</li>
-        <li>How is the algorithm currently used?</li>
-        <li>Why did we decide to write an article about it?</li>
-      </ul>
+        <h3>What is the PageRank algorithm?</h3>
+        <p>Developed by Google founders Larry Page and Sergey Brin in 1996 as part of a Stanford University research project, PageRank is an algorithm that is used to rank wep pages in search engine results. PageRank works by assigning numerical weights to wep pages based on the number of hyperlinks to and from other web pages. </p>
+        <h3>Why was PageRank invented?</h3>
+        <p>While Larry Page and Sergey Brin were working on their research project for a "new type of search engine", Brin realized that the search engine would need some way of ranking and ordering wep page results. Taking from the eigenvalue problem, a problem used throughout history to represent ranking problems, and from another earlier search engine called RankDex, Page and Brin developed the PageRank algorithm for Google's search engine.</p>
+        <h3>How is the algorithm currently used?</h3>
+        <p>Today, PageRank is still used by Google alongside other algorithms, however it is Google's first and most well known alrgorithm for ordering search results.</p>
+        <h3>Why did we decide to write an article about it?</h3>
+        <p></p>
     </div>
 
     <div>
@@ -44,25 +46,28 @@
           The algorithm takes in web pages, and outputs a rating for each page, which represents
           the reliability or trustworthiness of a site. Below, each colored node represents a unique webpage and directed edges between nodes represent links between those pages. The percentage on each node represents the perceived importance of that webpage, calculated through the pagerank algorithm.
         </p>
-        <div class='column'>
-          <svg width="340" height="320" draggable="false"><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="186.265625" y1="241.21875" x2="122.38015872111475" y2="110.29297960129689"></line><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="105.265625" y1="75.21875" x2="250.89488235955852" y2="76.81032658316457"></line><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="288.265625" y1="77.21875" x2="144.29032160181183" y2="75.64524941641325"></line><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="109.265625" y1="275.21875" x2="106.04600948131085" y2="114.23797406554229"></line><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="32.265625" y1="238.21875" x2="89.313938582325" y2="110.83689912439763"></line>
-            <defs>
-              <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                <path d="M 0 0 L 10 5 L 0 10 z"></path>
-              </marker>
-            </defs>
-          <circle cx="105.265625" cy="75.21875" fill="#DD7711" class="node" r="39.0270260624187"></circle><text class="node-label" x="105.265625" y="75.21875" dominant-baseline="middle" text-anchor="middle">48%</text><circle cx="288.265625" cy="77.21875" fill="#00BB00" class="node" r="37.37297393758132"></circle><text class="node-label" x="288.265625" y="77.21875" dominant-baseline="middle" text-anchor="middle">43%</text><circle cx="32.265625" cy="238.21875" fill="#990099" class="node" r="21.200000000000003"></circle><text class="node-label" x="32.265625" y="238.21875" dominant-baseline="middle" text-anchor="middle">3%</text><circle cx="109.265625" cy="275.21875" fill="#BB0000" class="node" r="21.200000000000003"></circle><text class="node-label" x="109.265625" y="275.21875" dominant-baseline="middle" text-anchor="middle">3%</text><circle cx="186.265625" cy="241.21875" fill="#2288FF" class="node" r="21.200000000000003"></circle><text class="node-label" x="186.265625" y="241.21875" dominant-baseline="middle" text-anchor="middle">3%</text></svg>
-          <p><i>Example 1</i></p>
-        </div>
-        <div class='column'>
-          <svg width="320" height="340" draggable="false"><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="160" y1="233.10000610351562" x2="100.7290852389446" y2="149.30574583806163"></line><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="240" y1="120" x2="176.51145130044523" y2="209.7569405677874"></line><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="240" y1="120" x2="115.8959846496582" y2="120"></line><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="80" y1="120" x2="204.48841094970703" y2="120"></line>
-            <defs>
-              <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                <path d="M 0 0 L 10 5 L 0 10 z"></path>
-              </marker>
-            </defs>
-          <circle cx="80" cy="120" fill="#BB0000" class="node" r="35.89598643301299"></circle><text class="node-label" x="80" y="120" dominant-baseline="middle" text-anchor="middle">40%</text><circle cx="240" cy="120" fill="#009999" class="node" r="35.51158846806105"></circle><text class="node-label" x="240" y="120" dominant-baseline="middle" text-anchor="middle">39%</text><circle cx="160" cy="233.1" fill="#00BB00" class="node" r="28.592425098925943"></circle><text class="node-label" x="160" y="233.1" dominant-baseline="middle" text-anchor="middle">21%</text></svg>
-          <p><i>Example 2</i></p>
+        <!-- TODO: center labels and make static visuals next to each other-->
+        <div id="static-graphs"> 
+          <div class='column'>
+            <svg width="340" height="320" draggable="false"><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="186.265625" y1="241.21875" x2="122.38015872111475" y2="110.29297960129689"></line><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="105.265625" y1="75.21875" x2="250.89488235955852" y2="76.81032658316457"></line><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="288.265625" y1="77.21875" x2="144.29032160181183" y2="75.64524941641325"></line><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="109.265625" y1="275.21875" x2="106.04600948131085" y2="114.23797406554229"></line><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="32.265625" y1="238.21875" x2="89.313938582325" y2="110.83689912439763"></line>
+              <defs>
+                <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 0 L 10 5 L 0 10 z"></path>
+                </marker>
+              </defs>
+            <circle cx="105.265625" cy="75.21875" fill="#DD7711" class="node" r="39.0270260624187"></circle><text class="node-label" x="105.265625" y="75.21875" dominant-baseline="middle" text-anchor="middle">48%</text><circle cx="288.265625" cy="77.21875" fill="#00BB00" class="node" r="37.37297393758132"></circle><text class="node-label" x="288.265625" y="77.21875" dominant-baseline="middle" text-anchor="middle">43%</text><circle cx="32.265625" cy="238.21875" fill="#990099" class="node" r="21.200000000000003"></circle><text class="node-label" x="32.265625" y="238.21875" dominant-baseline="middle" text-anchor="middle">3%</text><circle cx="109.265625" cy="275.21875" fill="#BB0000" class="node" r="21.200000000000003"></circle><text class="node-label" x="109.265625" y="275.21875" dominant-baseline="middle" text-anchor="middle">3%</text><circle cx="186.265625" cy="241.21875" fill="#2288FF" class="node" r="21.200000000000003"></circle><text class="node-label" x="186.265625" y="241.21875" dominant-baseline="middle" text-anchor="middle">3%</text></svg>
+            <p><i>Example 1</i></p>
+          </div>
+          <div class='column'>
+            <svg width="340" height="320" draggable="false"><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="160" y1="233.10000610351562" x2="100.7290852389446" y2="149.30574583806163"></line><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="240" y1="120" x2="176.51145130044523" y2="209.7569405677874"></line><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="240" y1="120" x2="115.8959846496582" y2="120"></line><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="80" y1="120" x2="204.48841094970703" y2="120"></line>
+              <defs>
+                <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 0 L 10 5 L 0 10 z"></path>
+                </marker>
+              </defs>
+            <circle cx="80" cy="120" fill="#BB0000" class="node" r="35.89598643301299"></circle><text class="node-label" x="80" y="120" dominant-baseline="middle" text-anchor="middle">40%</text><circle cx="240" cy="120" fill="#009999" class="node" r="35.51158846806105"></circle><text class="node-label" x="240" y="120" dominant-baseline="middle" text-anchor="middle">39%</text><circle cx="160" cy="233.1" fill="#00BB00" class="node" r="28.592425098925943"></circle><text class="node-label" x="160" y="233.1" dominant-baseline="middle" text-anchor="middle">21%</text></svg>
+            <p><i>Example 2</i></p>
+          </div>
         </div>
         <h3>How the algorithm represent webpages as nodes and connections</h3>
           <p>
