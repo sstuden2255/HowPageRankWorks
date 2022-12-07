@@ -44,36 +44,14 @@
         <h3>Inputs and outputs</h3>
         <p>
           The algorithm takes in web pages, and outputs a rating for each page, which represents
-          the reliability or trustworthiness of a site. Below, each example represents a collection of web pages. In these examples, each colored node represents a unique webpage and directed edges between nodes represent links between those pages. The percentage on each node represents the perceived importance of that webpage, calculated through the PageRank algorithm.
+          the reliability or trustworthiness of a site. To do this, it first needs to convert the
+          web pages into a format more understandable by a computer:
         </p>
-        <!-- TODO: center labels and make static visuals next to each other-->
-        <div id="static-graphs"> 
-          <div class='column'>
-            <svg width="340" height="320" draggable="false"><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="186.265625" y1="241.21875" x2="122.38015872111475" y2="110.29297960129689"></line><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="105.265625" y1="75.21875" x2="250.89488235955852" y2="76.81032658316457"></line><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="288.265625" y1="77.21875" x2="144.29032160181183" y2="75.64524941641325"></line><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="109.265625" y1="275.21875" x2="106.04600948131085" y2="114.23797406554229"></line><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="32.265625" y1="238.21875" x2="89.313938582325" y2="110.83689912439763"></line>
-              <defs>
-                <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                  <path d="M 0 0 L 10 5 L 0 10 z"></path>
-                </marker>
-              </defs>
-            <circle cx="105.265625" cy="75.21875" fill="#DD7711" class="node" r="39.0270260624187"></circle><text class="node-label" x="105.265625" y="75.21875" dominant-baseline="middle" text-anchor="middle">48%</text><circle cx="288.265625" cy="77.21875" fill="#00BB00" class="node" r="37.37297393758132"></circle><text class="node-label" x="288.265625" y="77.21875" dominant-baseline="middle" text-anchor="middle">43%</text><circle cx="32.265625" cy="238.21875" fill="#990099" class="node" r="21.200000000000003"></circle><text class="node-label" x="32.265625" y="238.21875" dominant-baseline="middle" text-anchor="middle">3%</text><circle cx="109.265625" cy="275.21875" fill="#BB0000" class="node" r="21.200000000000003"></circle><text class="node-label" x="109.265625" y="275.21875" dominant-baseline="middle" text-anchor="middle">3%</text><circle cx="186.265625" cy="241.21875" fill="#2288FF" class="node" r="21.200000000000003"></circle><text class="node-label" x="186.265625" y="241.21875" dominant-baseline="middle" text-anchor="middle">3%</text></svg>
-            <p><i>Example 1</i></p>
-          </div>
-          <div class='column'>
-            <svg width="340" height="320" draggable="false"><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="160" y1="233.10000610351562" x2="100.7290852389446" y2="149.30574583806163"></line><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="240" y1="120" x2="176.51145130044523" y2="209.7569405677874"></line><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="240" y1="120" x2="115.8959846496582" y2="120"></line><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="80" y1="120" x2="204.48841094970703" y2="120"></line>
-              <defs>
-                <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                  <path d="M 0 0 L 10 5 L 0 10 z"></path>
-                </marker>
-              </defs>
-            <circle cx="80" cy="120" fill="#BB0000" class="node" r="35.89598643301299"></circle><text class="node-label" x="80" y="120" dominant-baseline="middle" text-anchor="middle">40%</text><circle cx="240" cy="120" fill="#009999" class="node" r="35.51158846806105"></circle><text class="node-label" x="240" y="120" dominant-baseline="middle" text-anchor="middle">39%</text><circle cx="160" cy="233.1" fill="#00BB00" class="node" r="28.592425098925943"></circle><text class="node-label" x="160" y="233.1" dominant-baseline="middle" text-anchor="middle">21%</text></svg>
-            <p><i>Example 2</i></p>
-          </div>
-        </div>
         <h3>The graph network representation</h3>
           <p>
             The algorithm works by representing the internet as a directed graph, where web pages
-            are nodes and links between pages are the connections between nodes. For example,
-            the example below has three web pages, each with links between each other. The corresponding
+            are nodes and links between pages are the connections between nodes.
+            The example below has three web pages, each with links between each other. The corresponding
             graph is shown beside.
           </p>
           <div id='graph-demo'>
@@ -125,21 +103,42 @@
             </div>
           </div>
         <h3>Creating the rating</h3>
+        <p>
           With the graph created, the algorithm then uses it to rank the pages based on importance.
           It does this by simulating people traveling around on the graph, clicking links from page to page.
           The pages where more people end up are thought to be the more important pages, and
           are ranked higher. The graphs below have been labeled with the percentage of traffic that they would get,
           which is also their ranking.
-        </h3>
+        </p>
+        <!-- TODO: center labels and make static visuals next to each other-->
+        <div id="static-graphs"> 
+          <div class='column'>
+            <svg width="340" height="320" draggable="false"><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="186.265625" y1="241.21875" x2="122.38015872111475" y2="110.29297960129689"></line><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="105.265625" y1="75.21875" x2="250.89488235955852" y2="76.81032658316457"></line><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="288.265625" y1="77.21875" x2="144.29032160181183" y2="75.64524941641325"></line><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="109.265625" y1="275.21875" x2="106.04600948131085" y2="114.23797406554229"></line><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="32.265625" y1="238.21875" x2="89.313938582325" y2="110.83689912439763"></line>
+              <defs>
+                <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 0 L 10 5 L 0 10 z"></path>
+                </marker>
+              </defs>
+            <circle cx="105.265625" cy="75.21875" fill="#DD7711" class="node" r="39.0270260624187"></circle><text class="node-label" x="105.265625" y="75.21875" dominant-baseline="middle" text-anchor="middle">48%</text><circle cx="288.265625" cy="77.21875" fill="#00BB00" class="node" r="37.37297393758132"></circle><text class="node-label" x="288.265625" y="77.21875" dominant-baseline="middle" text-anchor="middle">43%</text><circle cx="32.265625" cy="238.21875" fill="#990099" class="node" r="21.200000000000003"></circle><text class="node-label" x="32.265625" y="238.21875" dominant-baseline="middle" text-anchor="middle">3%</text><circle cx="109.265625" cy="275.21875" fill="#BB0000" class="node" r="21.200000000000003"></circle><text class="node-label" x="109.265625" y="275.21875" dominant-baseline="middle" text-anchor="middle">3%</text><circle cx="186.265625" cy="241.21875" fill="#2288FF" class="node" r="21.200000000000003"></circle><text class="node-label" x="186.265625" y="241.21875" dominant-baseline="middle" text-anchor="middle">3%</text></svg>
+            <p><i>Example 1</i></p>
+          </div>
+          <div class='column'>
+            <svg width="340" height="320" draggable="false"><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="160" y1="233.10000610351562" x2="100.7290852389446" y2="149.30574583806163"></line><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="240" y1="120" x2="176.51145130044523" y2="209.7569405677874"></line><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="240" y1="120" x2="115.8959846496582" y2="120"></line><line stroke="black" stroke-width="4px" marker-end="url(#arrow)" class="node" x1="80" y1="120" x2="204.48841094970703" y2="120"></line>
+              <defs>
+                <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 0 L 10 5 L 0 10 z"></path>
+                </marker>
+              </defs>
+            <circle cx="80" cy="120" fill="#BB0000" class="node" r="35.89598643301299"></circle><text class="node-label" x="80" y="120" dominant-baseline="middle" text-anchor="middle">40%</text><circle cx="240" cy="120" fill="#009999" class="node" r="35.51158846806105"></circle><text class="node-label" x="240" y="120" dominant-baseline="middle" text-anchor="middle">39%</text><circle cx="160" cy="233.1" fill="#00BB00" class="node" r="28.592425098925943"></circle><text class="node-label" x="160" y="233.1" dominant-baseline="middle" text-anchor="middle">21%</text></svg>
+            <p><i>Example 2</i></p>
+          </div>
+        </div>
     </div>
 
     <div>
         <h2>Interactive Graph</h2>
-        <ul>
-          <li>Click in the area to create a node. Drag from one node to another to create connections.
-          The sizes and percents of each node will be updated live with the PageRank algorithm!</li>
-          <li>Explanation of representations</li>
-        </ul>
+          <p>Click in the area to create a node. Drag from one node to another to create connections.
+          The sizes and percents of each node will be updated live with the pagerank algorithm!</p>
     </div>
     
     
