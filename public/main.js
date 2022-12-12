@@ -1,7 +1,7 @@
 
 //const colors = ["#990000", "#009900", "#000099"]
 //const colors = ['red', 'orange', 'green', 'blue', 'violet']
-const colors = ['#BB0000', '#DD7711', '#00BB00', '#009999', '#2288FF', '#990099']
+const colors = ['#4285F4', '#DB4437', '#F4B400', '#0F9D58']
 var color_index = 0
 
 const jump_chance = 0.15
